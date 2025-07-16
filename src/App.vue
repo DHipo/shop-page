@@ -1,5 +1,11 @@
 <script setup lang="ts">
 import ProductCard from './components/product-card.vue'
+
+const products = Array.from({ length: 10 }, (_, i) => ({
+  title: `Product ${i + 1}`,
+  description: `Description for product ${i + 1}`,
+  price: (i + 1) * 10,
+}))
 </script>
 
 <template>
@@ -17,9 +23,17 @@ import ProductCard from './components/product-card.vue'
     </nav>
   </header>
 
-  <main>
-    <div v-for="i in 10" :key="i" class="p-4">
-      <ProductCard />
+  <main class="w-full flex flex-wrap">
+    <div
+      v-for="product in products"
+      :key="product.title"
+      class="p-4 w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
+    >
+      <ProductCard
+        :title="product.title"
+        :description="product.description"
+        :price="product.price"
+      />
     </div>
   </main>
 </template>
