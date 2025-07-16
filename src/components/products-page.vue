@@ -10,4 +10,14 @@ const props = defineProps<{
 }>()
 </script>
 
-<template>products</template>
+<template>
+  <div class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
+    <productCard
+      v-for="product in props.products"
+      :key="product.title"
+      :title="product.title"
+      :description="product.description"
+      :price="product.price"
+    />
+  </div>
+</template>

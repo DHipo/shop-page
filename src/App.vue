@@ -12,12 +12,13 @@ const routes = {
 const currentPath = ref(window.location.pathname)
 
 window.addEventListener('hashchange', () => {
+  console.log('Hash changed:', window.location.hash)
   currentPath.value = window.location.hash
 })
 const currentView = computed(() => {
   if (currentPath.value.slice(1) === '') return routes['/']
   console.log('Current path:', currentPath.value.slice(1))
-  return routes[currentPath.value.slice(1) as keyof typeof routes]
+  return routes[('/' + currentPath.value.slice(1)) as keyof typeof routes]
 })
 
 const products = Array.from({ length: 10 }, (_, i) => ({
